@@ -1,0 +1,12 @@
+table {
+  border: 1px solid grey;
+  border-collapse: collapse;
+}
+/* границы ячеек первого ряда таблицы */
+th {
+  border: 1px solid grey;
+}
+/* границы ячеек тела таблицы */
+td {
+  border: 1px solid grey;
+}

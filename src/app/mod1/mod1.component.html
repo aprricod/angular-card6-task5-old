@@ -1,0 +1,28 @@
+<form [formGroup]="form">
+  <table class="my-table">
+    <caption>
+      Таблица уроков
+    </caption>
+    <tr>
+      <th>Номер</th>
+      <th>Дата урока</th>
+      <th>Тема урока</th>
+      <th>Домашнее задание</th>
+      <th>Примечание</th>
+    </tr>
+    <tr>
+      <td><input type="number" formControlName="number" /></td>
+      <td><input type="date" formControlName="date" /></td>
+      <td><input type="text" formControlName="theme" /></td>
+      <td><input type="text" formControlName="homework" /></td>
+      <td><input type="text" formControlName="note" /></td>
+    </tr>
+    <tr>
+      <td><input type="number" formControlName="number" /></td>
+      <td><input type="date" formControlName="date" /></td>
+      <td><input type="text" formControlName="theme" /></td>
+      <td><input type="text" formControlName="homework" /></td>
+      <td><input type="text" formControlName="note" /></td>
+    </tr>
+  </table>
+</form>
