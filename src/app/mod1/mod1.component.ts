@@ -25,16 +25,16 @@ export class Mod1Component implements OnInit {
     });
   }
 
+  add() {
+    (this.form.get('list') as FormArray).push(this.fb.control(null));
+  }
+
   saveToStorage() {
     this.toSave = localStorage.setItem('key', 'value');
   }
 
   getFromStorage() {
     this.getData = localStorage.getItem('value');
-  }
-
-  add() {
-    (this.form.get('phones') as FormArray).push(this.fb.control(null));
   }
 
   ngOnInit(): void {}

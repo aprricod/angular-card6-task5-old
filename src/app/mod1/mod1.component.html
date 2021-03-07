@@ -1,5 +1,5 @@
 <form [formGroup]="form">
-  <table class="my-table">
+  <table>
     <caption>
       Таблица уроков
     </caption>
@@ -10,15 +10,23 @@
       <th>Домашнее задание</th>
       <th>Примечание</th>
     </tr>
-    <tr>
-      <td><input type="number" formControlName="number" /></td>
+    <tr
+      *ngFor="let item of form.get('list')['controls']; let id = index"
+      [formControlName]="id"
+    >
+      <td><input type="number" formControlName="num" /></td>
       <td><input type="date" formControlName="date" /></td>
       <td><input type="text" formControlName="theme" /></td>
       <td><input type="text" formControlName="homework" /></td>
       <td><input type="text" formControlName="note" /></td>
     </tr>
   </table>
+  <br />
+  <button (click)="add()">Добавить строку</button>
 </form>
+
+<pre>{{ form.value | json }}</pre>
+
 <br />
 <button (click)="saveToStorage()">Save</button>
 <br />
