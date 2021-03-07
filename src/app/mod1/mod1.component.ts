@@ -1,4 +1,3 @@
-import { formatCurrency } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 
@@ -15,11 +14,11 @@ export class Mod1Component implements OnInit {
     this.form = fb.group({
       list: fb.array([
         fb.group({
-          num: fb.control(null),
-          date: fb.control(null),
-          theme: fb.control(null),
-          homework: fb.control(null),
-          note: fb.control(null),
+          num: fb.control(''),
+          date: fb.control(''),
+          theme: fb.control(''),
+          homework: fb.control(''),
+          note: fb.control(''),
         }),
       ]),
     });
