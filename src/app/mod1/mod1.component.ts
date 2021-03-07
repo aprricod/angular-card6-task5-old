@@ -29,11 +29,11 @@ export class Mod1Component implements OnInit {
   }
 
   saveToStorage() {
-    this.toSave = localStorage.setItem('key', 'value');
+    this.toSave = localStorage.setItem('Имя', 'Вася');
   }
 
   getFromStorage() {
-    this.getData = localStorage.getItem('value');
+    this.getData = localStorage.getItem('2');
   }
 
   ngOnInit(): void {}
