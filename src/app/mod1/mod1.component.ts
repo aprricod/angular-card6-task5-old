@@ -7,8 +7,7 @@ import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
   styleUrls: ['./mod1.component.css'],
 })
 export class Mod1Component implements OnInit {
-  toSave;
-  getData;
+  data;
   form: FormGroup;
   constructor(public fb: FormBuilder) {
     this.form = fb.group({
@@ -29,11 +28,11 @@ export class Mod1Component implements OnInit {
   }
 
   saveToStorage() {
-    this.toSave = localStorage.setItem('Имя', 'Вася');
+    localStorage.setItem('Имя', 'Вася');
   }
 
   getFromStorage() {
-    this.getData = localStorage.getItem('2');
+    this.data = localStorage.getItem('Имя');
   }
 
   ngOnInit(): void {}
