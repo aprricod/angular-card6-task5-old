@@ -17,12 +17,12 @@
       <td><input type="text" formControlName="homework" /></td>
       <td><input type="text" formControlName="note" /></td>
     </tr>
-    <tr>
-      <td><input type="number" formControlName="number" /></td>
-      <td><input type="date" formControlName="date" /></td>
-      <td><input type="text" formControlName="theme" /></td>
-      <td><input type="text" formControlName="homework" /></td>
-      <td><input type="text" formControlName="note" /></td>
-    </tr>
   </table>
 </form>
+<br />
+<button (click)="saveToStorage()">Save</button>
+<br />
+<br />
+<button (click)="getFromStorage()">Get</button>
+
+<p>{{ getData }}</p>
