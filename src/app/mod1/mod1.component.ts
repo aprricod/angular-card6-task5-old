@@ -8,6 +8,12 @@ import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 })
 export class Mod1Component implements OnInit {
   data;
+  num: string = '';
+  date: string = '';
+  theme: string = '';
+  homework: string = '';
+  note: string = '';
+
   form: FormGroup;
   constructor(public fb: FormBuilder) {
     this.form = fb.group({
@@ -27,13 +33,28 @@ export class Mod1Component implements OnInit {
     (this.form.get('list') as FormArray).push(this.fb.control(null));
   }
 
-  saveToStorage() {
-    localStorage.setItem('Имя', 'Вася');
+  saveNumToStorage() {
+    localStorage.setItem('Номер', this.num);
   }
 
-  getFromStorage() {
-    this.data = localStorage.getItem('Имя');
+  saveDateToStorage() {
+    localStorage.setItem('Дата урока', this.date);
   }
 
+  saveThemeToStorage() {
+    localStorage.setItem('Тема урока', this.theme);
+  }
+
+  saveHomeworkToStorage() {
+    localStorage.setItem('Домашнее задание', this.homework);
+  }
+
+  saveNoteToStorage() {
+    localStorage.setItem('Примечание', this.note);
+  }
+
+  getNoteFromStorage() {
+    this.data = localStorage.getItem('Примечание');
+  }
   ngOnInit(): void {}
 }

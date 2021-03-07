@@ -26,11 +26,33 @@
 </form>
 
 <pre>{{ form.value | json }}</pre>
+<hr />
+
+<table>
+  <caption>
+    Тестовая таблица уроков
+  </caption>
+  <tr>
+    <th>Номер</th>
+    <th>Дата урока</th>
+    <th>Тема урока</th>
+    <th>Домашнее задание</th>
+    <th>Примечание</th>
+  </tr>
+  <tr>
+    <td><input type="text" [(ngModel)]="num" /></td>
+    <td><input type="date" [(ngModel)]="data" /></td>
+    <td><input type="text" [(ngModel)]="theme" /></td>
+    <td><input type="text" [(ngModel)]="homework" /></td>
+    <td><input type="text" [(ngModel)]="note" /></td>
+  </tr>
+</table>
 
 <br />
-<button (click)="saveToStorage()">Save</button>
+<button (click)="saveNoteToStorage()">Save note</button>
 <br />
 <br />
-<button (click)="getFromStorage()">Get</button>
-
+<button (click)="getNoteFromStorage()">Get note</button>
+<br />
 <p>{{ data }}</p>
+<hr />
