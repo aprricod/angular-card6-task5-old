@@ -10,11 +10,12 @@
       <th>Домашнее задание</th>
       <th>Примечание</th>
     </tr>
+
     <tr
-      *ngFor="let item of form.get('list')['controls']; let id = index"
-      [formArrayName]="list"
+      *ngFor="let item of lessons.controls; let i = index"
+      [formArrayName]="lessons"
     >
-      <td><input type="number" formControlName="num" /></td>
+      <td><input type="number" formControlName="id" /></td>
       <td><input type="date" formControlName="date" /></td>
       <td><input type="text" formControlName="theme" /></td>
       <td><input type="text" formControlName="homework" /></td>
@@ -23,12 +24,23 @@
   </table>
   <br />
   <button (click)="add()">Добавить строку</button>
+  <br />
+  <button (click)="delete()">Удалить строку</button>
 </form>
 
 <pre>{{ form.value | json }}</pre>
 <hr />
 
-<table>
+<!-- <br />
+<button (click)="saveNoteToStorage()">Save note</button>
+<br />
+<br />
+<button (click)="getNoteFromStorage()">Get note</button>
+<br />
+<p>{{ data }}</p>
+<hr /> -->
+
+<!-- <table>
   <caption>
     Тестовая таблица уроков
   </caption>
@@ -40,19 +52,10 @@
     <th>Примечание</th>
   </tr>
   <tr>
-    <td><input type="text" [(ngModel)]="num" /></td>
+    <td><input type="text" [(ngModel)]="id" /></td>
     <td><input type="date" [(ngModel)]="data" /></td>
     <td><input type="text" [(ngModel)]="theme" /></td>
     <td><input type="text" [(ngModel)]="homework" /></td>
     <td><input type="text" [(ngModel)]="note" /></td>
   </tr>
-</table>
-
-<br />
-<button (click)="saveNoteToStorage()">Save note</button>
-<br />
-<br />
-<button (click)="getNoteFromStorage()">Get note</button>
-<br />
-<p>{{ data }}</p>
-<hr />
+</table> -->

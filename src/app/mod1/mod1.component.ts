@@ -1,25 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 
+const lessonTable = require('../../assets/lessonTable.json');
+
 @Component({
   selector: 'app-mod1',
   templateUrl: './mod1.component.html',
   styleUrls: ['./mod1.component.css'],
 })
 export class Mod1Component implements OnInit {
-  data;
-  num: string = '';
-  date: string = '';
-  theme: string = '';
-  homework: string = '';
-  note: string = '';
-
   form: FormGroup;
   constructor(public fb: FormBuilder) {
     this.form = fb.group({
-      list: fb.array([
+      lessons: fb.array([
         fb.group({
-          num: fb.control(''),
+          id: fb.control(''),
           date: fb.control(''),
           theme: fb.control(''),
           homework: fb.control(''),
@@ -29,32 +24,37 @@ export class Mod1Component implements OnInit {
     });
   }
 
+  get lessons() {
+    return this.form.get('lessons') as FormArray;
+  }
+
   add() {
-    (this.form.get('list') as FormArray).push(this.fb.control(null));
+    (this.form.get('lessons') as FormArray).push(
+      this.fb.group({
+        id: this.fb.control(''),
+        date: this.fb.control(''),
+        theme: this.fb.control(''),
+        homework: this.fb.control(''),
+        note: this.fb.control(''),
+      })
+    );
   }
 
-  saveNumToStorage() {
-    localStorage.setItem('Номер', this.num);
+  delete() {
+    (this.form.get('lessons') as FormArray).removeAt(
+      (this.form.get('lessons') as FormArray).length - 1
+    );
   }
 
-  saveDateToStorage() {
-    localStorage.setItem('Дата урока', this.date);
-  }
+  // Тут попытки работы с local storage
 
-  saveThemeToStorage() {
-    localStorage.setItem('Тема урока', this.theme);
-  }
+  // saveNoteToStorage() {
+  //   localStorage.setItem('Примечание', this.note);
+  // }
 
-  saveHomeworkToStorage() {
-    localStorage.setItem('Домашнее задание', this.homework);
-  }
+  // getNoteFromStorage() {
+  //   this.data = localStorage.getItem('Примечание');
+  // }
 
-  saveNoteToStorage() {
-    localStorage.setItem('Примечание', this.note);
-  }
-
-  getNoteFromStorage() {
-    this.data = localStorage.getItem('Примечание');
-  }
   ngOnInit(): void {}
 }
