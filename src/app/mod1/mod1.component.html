@@ -11,19 +11,21 @@
       <th>Примечание</th>
     </tr>
 
-    <tr
-      *ngFor="let item of lessons.controls; let i = index"
-      [formArrayName]="lessons"
-    >
-      <td><input type="number" formControlName="id" /></td>
+    <tr *ngFor="let item of lessons.controls" formArrayName="lessons">
+      <!-- <td><input type="number" formControlName="id" /></td>
       <td><input type="date" formControlName="date" /></td>
       <td><input type="text" formControlName="theme" /></td>
       <td><input type="text" formControlName="homework" /></td>
-      <td><input type="text" formControlName="note" /></td>
+      <td><input type="text" formControlName="note" /></td> -->
+      <td><input type="number" /></td>
+      <td><input type="date" /></td>
+      <td><input type="text" /></td>
+      <td><input type="text" /></td>
+      <td><input type="text" /></td>
     </tr>
   </table>
   <br />
-  <button style="margin-right: 10px;" (click)="add()">Добавить строку</button
+  <button style="margin-right: 10px" (click)="add()">Добавить строку</button
   ><button (click)="delete()">Удалить строку</button>
 </form>
 
