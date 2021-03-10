@@ -13,7 +13,7 @@ export class Mod1Component implements OnInit {
     this.form = fb.group({
       lessons: fb.array([
         fb.group({
-          id: fb.control(null, [Validators.required, Validators.minLength(2)]),
+          id: fb.control(null, [Validators.required, Validators.minLength(23)]),
           date: fb.control(null, Validators.required),
           theme: fb.control(null, Validators.required),
           homework: fb.control(null),
@@ -42,28 +42,32 @@ export class Mod1Component implements OnInit {
     );
   }
 
-  deleteRow() {
-    (this.form.get('lessons') as FormArray).removeAt(
-      (this.form.get('lessons') as FormArray).length - 1
-    );
+  // deleteRow() {
+  //   (this.form.get('lessons') as FormArray).removeAt(
+  //     (this.form.get('lessons') as FormArray).length - 1
+  //   );
+  // }
+
+  deleteRow(index) {
+    (this.form.get('lessons') as FormArray).removeAt(index);
   }
 
-  insert(i) {
-    this.lessons.insert(
-      i,
-      this.fb.group({
-        id: this.fb.control(''),
-        date: this.fb.control(''),
-        theme: this.fb.control(''),
-        homework: this.fb.control(''),
-        note: this.fb.control(''),
-      })
-    );
-  }
+  // insert(i) {
+  //   this.lessons.insert(
+  //     i,
+  //     this.fb.group({
+  //       id: this.fb.control(''),
+  //       date: this.fb.control(''),
+  //       theme: this.fb.control(''),
+  //       homework: this.fb.control(''),
+  //       note: this.fb.control(''),
+  //     })
+  //   );
+  // }
 
-  delete(i) {
-    this.lessons.removeAt(i);
-  }
+  // delete(i) {
+  //   this.lessons.removeAt(i);
+  // }
 
   // Тут попытки работы с local storage
 

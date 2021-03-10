@@ -35,11 +35,12 @@
       <td [formGroupName]="i">
         <input type="text" formControlName="note" />
       </td>
+      <button (click)="deleteRow(i)">Удалить строку</button>
     </tr>
   </table>
   <br />
   <button style="margin-right: 10px" (click)="addRow()">Добавить строку</button
-  ><button (click)="deleteRow()">Удалить строку</button>
+  >
 </form>
 
 <pre>{{ form.value | json }}</pre>
