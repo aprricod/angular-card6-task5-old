@@ -1,32 +1,45 @@
-<form [formGroup]="form">
+<form [formGroup]="form" novalidate>
   <table>
     <caption>
       Таблица уроков
     </caption>
-    <tr>
+    <!-- <tr>
       <th>Номер</th>
       <th>Дата урока</th>
       <th>Тема урока</th>
       <th>Домашнее задание</th>
       <th>Примечание</th>
-    </tr>
+    </tr> -->
 
-    <tr *ngFor="let item of lessons.controls" formArrayName="lessons">
-      <!-- <td><input type="number" formControlName="id" /></td>
-      <td><input type="date" formControlName="date" /></td>
-      <td><input type="text" formControlName="theme" /></td>
-      <td><input type="text" formControlName="homework" /></td>
-      <td><input type="text" formControlName="note" /></td> -->
-      <td><input type="number" /></td>
-      <td><input type="date" /></td>
-      <td><input type="text" /></td>
-      <td><input type="text" /></td>
-      <td><input type="text" /></td>
+    <tr
+      *ngFor="let item of lessons.controls; let i = index"
+      formArrayName="lessons"
+    >
+      <th>№</th>
+      <td [formGroupName]="i">
+        <input type="number" formControlName="id" />
+      </td>
+      <th>Дата урока</th>
+      <td [formGroupName]="i">
+        <input type="date" formControlName="date" />
+      </td>
+      <th>Тема урока</th>
+      <td [formGroupName]="i">
+        <input type="text" formControlName="theme" />
+      </td>
+      <th>Домашнее задание</th>
+      <td [formGroupName]="i">
+        <input type="text" formControlName="homework" />
+      </td>
+      <th>Примечание</th>
+      <td [formGroupName]="i">
+        <input type="text" formControlName="note" />
+      </td>
     </tr>
   </table>
   <br />
-  <button style="margin-right: 10px" (click)="add()">Добавить строку</button
-  ><button (click)="delete()">Удалить строку</button>
+  <button style="margin-right: 10px" (click)="addRow()">Добавить строку</button
+  ><button (click)="deleteRow()">Удалить строку</button>
 </form>
 
 <pre>{{ form.value | json }}</pre>
@@ -60,3 +73,30 @@
     <td><input type="text" [(ngModel)]="note" /></td>
   </tr>
 </table> -->
+
+<!-- <table>
+  <tr *ngFor="let post of mod1.lessonTable">
+    <td><input type="text" value="{{ post.id | json }}" /></td>
+  </tr>
+</table> -->
+
+<!-- <form [formGroup]="form" novalidate>
+  <div formArrayName="lessons">
+    <div *ngFor="let lessone of lessons.controls; let i = index">
+      <div [formGroupName]="i">
+        <input type="number" formControlName="id" />
+        <br />
+        <input type="date" formControlName="date" />
+        <br />
+        <input type="text" formControlName="theme" />
+        <br />
+        <input type="text" formControlName="homework" />
+        <br />
+        <input type="text" formControlName="note" />
+      </div>
+    </div>
+  </div>
+  <br />
+  <button style="margin-right: 10px" (click)="addRow()">Добавить строку</button
+  ><button (click)="deleteRow()">Удалить строку</button>
+</form> -->

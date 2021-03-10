@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Mod1Service } from './mod1.service';
 
 @Component({
@@ -13,11 +13,11 @@ export class Mod1Component implements OnInit {
     this.form = fb.group({
       lessons: fb.array([
         fb.group({
-          id: fb.control(''),
-          date: fb.control(''),
-          theme: fb.control(''),
-          homework: fb.control(''),
-          note: fb.control(''),
+          id: fb.control(null, [Validators.required, Validators.minLength(2)]),
+          date: fb.control(null, Validators.required),
+          theme: fb.control(null, Validators.required),
+          homework: fb.control(null),
+          note: fb.control(null),
         }),
       ]),
     });
@@ -27,8 +27,30 @@ export class Mod1Component implements OnInit {
     return this.form.get('lessons') as FormArray;
   }
 
-  add() {
+  addRow() {
     (this.form.get('lessons') as FormArray).push(
+      this.fb.group({
+        id: this.fb.control(null, [
+          Validators.required,
+          Validators.minLength(2),
+        ]),
+        date: this.fb.control(null, Validators.required),
+        theme: this.fb.control(null, Validators.required),
+        homework: this.fb.control(null),
+        note: this.fb.control(null),
+      })
+    );
+  }
+
+  deleteRow() {
+    (this.form.get('lessons') as FormArray).removeAt(
+      (this.form.get('lessons') as FormArray).length - 1
+    );
+  }
+
+  insert(i) {
+    this.lessons.insert(
+      i,
       this.fb.group({
         id: this.fb.control(''),
         date: this.fb.control(''),
@@ -39,10 +61,8 @@ export class Mod1Component implements OnInit {
     );
   }
 
-  delete() {
-    (this.form.get('lessons') as FormArray).removeAt(
-      (this.form.get('lessons') as FormArray).length - 1
-    );
+  delete(i) {
+    this.lessons.removeAt(i);
   }
 
   // Тут попытки работы с local storage
@@ -59,3 +79,18 @@ export class Mod1Component implements OnInit {
     this.mod1.loadLesson();
   }
 }
+
+// form: FormGroup;
+// constructor(public fb: FormBuilder, public mod1: Mod1Service) {
+//   this.form = fb.group({
+//     lessons: fb.array([
+//       fb.group({
+//         id: fb.control(''),
+//         date: fb.control(''),
+//         theme: fb.control(''),
+//         homework: fb.control(''),
+//         note: fb.control(''),
+//       }),
+//     ]),
+//   });
+// }
