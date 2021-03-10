@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
-
-const lessonTable = require('../../assets/lessonTable.json');
+import { Mod1Service } from './mod1.service';
 
 @Component({
   selector: 'app-mod1',
@@ -10,7 +9,7 @@ const lessonTable = require('../../assets/lessonTable.json');
 })
 export class Mod1Component implements OnInit {
   form: FormGroup;
-  constructor(public fb: FormBuilder) {
+  constructor(public fb: FormBuilder, public mod1: Mod1Service) {
     this.form = fb.group({
       lessons: fb.array([
         fb.group({
@@ -56,5 +55,7 @@ export class Mod1Component implements OnInit {
   //   this.data = localStorage.getItem('Примечание');
   // }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.mod1.loadLesson();
+  }
 }
