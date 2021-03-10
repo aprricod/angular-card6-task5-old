@@ -49,7 +49,11 @@ export class Mod1Component implements OnInit {
   // }
 
   deleteRow(index) {
-    (this.form.get('lessons') as FormArray).removeAt(index);
+    if (index > 0) {
+      (this.form.get('lessons') as FormArray).removeAt(index);
+    } else {
+      alert('Нельзя удалить единственную строку!');
+    }
   }
 
   // insert(i) {
