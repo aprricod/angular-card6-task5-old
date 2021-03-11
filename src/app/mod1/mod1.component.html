@@ -1,12 +1,9 @@
-<form [formGroup]="form" novalidate>
+<form [formGroup]="form">
   <table>
     <caption>
       Таблица уроков
     </caption>
-    <div
-      *ngFor="let item of lessons.controls; let i = index"
-      formArrayName="lessons"
-    >
+    <p formArrayName="lessons">
       <tr>
         <th>№</th>
         <th>Дата урока</th>
@@ -15,7 +12,11 @@
         <th>Примечание</th>
         <th>Удалить</th>
       </tr>
-      <tr [formGroupName]="i">
+
+      <tr
+        *ngFor="let item of getLessons.controls; let i = index"
+        [formGroupName]="i"
+      >
         <td>
           <input type="number" formControlName="id" />
         </td>
@@ -35,7 +36,7 @@
           <button (click)="deleteRow(i)">Удалить строку</button>
         </td>
       </tr>
-    </div>
+    </p>
   </table>
   <br />
   <button style="margin-right: 10px" (click)="addRow()">Добавить строку</button>
@@ -99,3 +100,43 @@
   <button style="margin-right: 10px" (click)="addRow()">Добавить строку</button
   ><button (click)="deleteRow()">Удалить строку</button>
 </form> -->
+
+<!-- !рабочая таблица -->
+<!-- <table>
+  <caption>
+    Таблица уроков
+  </caption>
+  <div
+    *ngFor="let item of getLessons.controls; let i = index"
+    formArrayName="lessons"
+  >
+    <tr>
+      <th>№</th>
+      <th>Дата урока</th>
+      <th>Тема урока</th>
+      <th>Домашнее задание</th>
+      <th>Примечание</th>
+      <th>Удалить</th>
+    </tr>
+    <tr [formGroupName]="i">
+      <td>
+        <input type="number" formControlName="id" />
+      </td>
+      <td>
+        <input type="date" formControlName="date" />
+      </td>
+      <td>
+        <input type="text" formControlName="theme" />
+      </td>
+      <td>
+        <input type="text" formControlName="homework" />
+      </td>
+      <td>
+        <input type="text" formControlName="note" />
+      </td>
+      <td>
+        <button (click)="deleteRow(i)">Удалить строку</button>
+      </td>
+    </tr>
+  </div>
+</table> -->

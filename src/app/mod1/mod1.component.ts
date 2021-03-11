@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  FormArray,
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { Mod1Service } from './mod1.service';
 
 @Component({
@@ -13,18 +19,26 @@ export class Mod1Component implements OnInit {
     this.form = fb.group({
       lessons: fb.array([
         fb.group({
-          id: fb.control(null, [Validators.required, Validators.minLength(23)]),
+          id: fb.control(null, [
+            Validators.required,
+            Validators.min(3),
+            Validators.max(10),
+          ]),
           date: fb.control(null, Validators.required),
           theme: fb.control(null, Validators.required),
-          homework: fb.control(null),
+          homework: fb.control(null, Validators.required),
           note: fb.control(null),
         }),
       ]),
     });
   }
 
-  get lessons() {
+  get getLessons() {
     return this.form.get('lessons') as FormArray;
+  }
+
+  get getId() {
+    return this.form.get('id') as FormControl;
   }
 
   addRow() {
@@ -52,7 +66,7 @@ export class Mod1Component implements OnInit {
     if (index > 0) {
       (this.form.get('lessons') as FormArray).removeAt(index);
     } else {
-      alert('Нельзя удалить единственную строку!');
+      alert('Эту строку нельзя удалить!');
     }
   }
 
