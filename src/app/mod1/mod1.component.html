@@ -18,19 +18,35 @@
         [formGroupName]="i"
       >
         <td>
-          <input type="number" formControlName="id" />
+          <input
+            type="number"
+            required
+            min="1"
+            title="номер не может быть меньше 1"
+            formControlName="id"
+          />
         </td>
         <td>
-          <input type="date" formControlName="date" />
+          <input type="date" min="date.now()" required formControlName="date" />
         </td>
         <td>
-          <input type="text" formControlName="theme" />
+          <input type="text" required formControlName="theme" />
         </td>
         <td>
-          <input type="text" formControlName="homework" />
+          <input
+            type="text"
+            pattern="[A-Za-zА-Яа-я]{1,20}"
+            title="Поле должно содержать какой-то текст"
+            formControlName="homework"
+          />
         </td>
         <td>
-          <input type="text" formControlName="note" />
+          <input
+            type="text"
+            pattern="[A-Za-zА-Яа-я]{1,20}"
+            title="Поле должно содержать какой-то текст"
+            formControlName="note"
+          />
         </td>
         <td>
           <button (click)="deleteRow(i)">Удалить строку</button>

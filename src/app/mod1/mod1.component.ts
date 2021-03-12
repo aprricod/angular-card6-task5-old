@@ -4,6 +4,7 @@ import {
   FormBuilder,
   FormControl,
   FormGroup,
+  MaxLengthValidator,
   Validators,
 } from '@angular/forms';
 import { Mod1Service } from './mod1.service';
@@ -19,14 +20,10 @@ export class Mod1Component implements OnInit {
     this.form = fb.group({
       lessons: fb.array([
         fb.group({
-          id: fb.control(null, [
-            Validators.required,
-            Validators.min(3),
-            Validators.max(10),
-          ]),
-          date: fb.control(null, Validators.required),
-          theme: fb.control(null, Validators.required),
-          homework: fb.control(null, Validators.required),
+          id: fb.control(null),
+          date: fb.control(null),
+          theme: fb.control(null),
+          homework: fb.control(null),
           note: fb.control(null),
         }),
       ]),
@@ -44,12 +41,9 @@ export class Mod1Component implements OnInit {
   addRow() {
     (this.form.get('lessons') as FormArray).push(
       this.fb.group({
-        id: this.fb.control(null, [
-          Validators.required,
-          Validators.minLength(2),
-        ]),
-        date: this.fb.control(null, Validators.required),
-        theme: this.fb.control(null, Validators.required),
+        id: this.fb.control(null),
+        date: this.fb.control(null),
+        theme: this.fb.control(null),
         homework: this.fb.control(null),
         note: this.fb.control(null),
       })
