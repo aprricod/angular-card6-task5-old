@@ -1,12 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  FormArray,
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  MaxLengthValidator,
-  Validators,
-} from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import * as moment from 'moment';
 import { Mod1Service } from './mod1.service';
 
 @Component({
@@ -21,7 +15,7 @@ export class Mod1Component implements OnInit {
       lessons: fb.array([
         fb.group({
           id: fb.control(null),
-          date: fb.control(null),
+          date: fb.control(null, this.dateValidator),
           theme: fb.control(null),
           homework: fb.control(null),
           note: fb.control(null),
@@ -42,7 +36,7 @@ export class Mod1Component implements OnInit {
     (this.form.get('lessons') as FormArray).push(
       this.fb.group({
         id: this.fb.control(null),
-        date: this.fb.control(null),
+        date: this.fb.control(null, this.dateValidator),
         theme: this.fb.control(null),
         homework: this.fb.control(null),
         note: this.fb.control(null),
@@ -62,6 +56,22 @@ export class Mod1Component implements OnInit {
     } else {
       alert('Эту строку нельзя удалить!');
     }
+  }
+
+  // dateValidator(control: FormControl): any {
+  //   let dateToUnix = Date.parse(control.value);
+  //   if (dateToUnix < Date.now()) {
+  //     return { date: true };
+  //   }
+  //   return null;
+  // }
+
+  dateValidator(control: FormControl): any {
+    let currentDate = control.value;
+    if (moment().isAfter(currentDate, 'day')) {
+      return { date: true };
+    }
+    return null;
   }
 
   // insert(i) {
